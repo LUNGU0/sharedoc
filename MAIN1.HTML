@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            font-family: 'Helvetica', Arial, sans-serif;
+            color: #000000;
+            overflow: hidden;
+        }
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 0, 0, 0.5);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-50vh) scale(1.5); opacity: 0.2; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+        .verification-container {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+        .adobe-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgyN0wzMiAzMkwzNyAwSDY0TTMyIDY0TDAgMFoiIHN0cm9rZT0iI2ZmMDAwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPg==') no-repeat center;
+            background-size: contain;
+            animation: spiral 2s linear infinite, fade-in-out 2s ease-in-out infinite;
+        }
+        @keyframes spiral {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        @keyframes fade-in-out {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        h1 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 10px;
+            text-transform: lowercase;
+            background: linear-gradient(90deg, #ff0000, #cc0000, #ff3333, #ff0000);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        p {
+            font-size: 14px;
+            margin: 0 0 20px;
+            color: #333333;
+        }
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff0000, #cc0000);
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+    </style>
+    <script>
+        // Add particles dynamically
+        const particleContainer = document.createElement('div');
+        particleContainer.className = 'particles';
+        document.body.appendChild(particleContainer);
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particleContainer.appendChild(particle);
+        }
+    </script>
+</head>
+<body>
+    <div class="verification-container" id="verification-container">
+        <div class="adobe-logo"></div>
+        <h1>verification</h1>
+        <p>Please complete the CAPTCHA to continue...</p>
+        <button id="verify-button">Verify</button>
+    </div>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92230f69abc9afb9',t:'MTc0MjI4MzM5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    <script>
+        // Redirect to YouTube after 15 seconds with "Success!" message
+        document.addEventListener('DOMContentLoaded', function() {
+            const verifyButton = document.getElementById('verify-button');
+            const container = document.getElementById('verification-container');
+            
+            verifyButton.addEventListener('click', function() {
+                // Update the container to show "Success!"
+                container.innerHTML = `
+                    <div class="adobe-logo"></div>
+                    <h1>success!</h1>
+                    <p>Redirecting in 15 seconds...</p>
+                `;
+                
+                // Redirect after 15 seconds
+                setTimeout(function() {
+                    window.location.href = 'https://youtube.com';
+                }, 15000); // 15 seconds
+            });
+        });
+    </script>
+</body>
+</html>
